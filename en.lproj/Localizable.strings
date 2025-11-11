@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  CryptoPriceTracker
+
+  Created by Sanjay Ramanathan on 2025-11-11.
+  
+*/
+
+"crypto_tracker" = "Crypto Tracker";
+"market_cap" = "Market Cap";
+"price_change_24h" = "24h Change";
+"error_title" = "Error";
+"error_message" = "Something went wrong. Please try again.";
+"retry" = "Retry";
