@@ -18,20 +18,31 @@ class NetworkManager: NetworkManaging {
       throw NetworkError.invalidURL
     }
 
+    let (data, response): (Data, URLResponse)
     do {
-      let (data, response) = try await URLSession.shared.data(from: url)
+      (data, response) = try await URLSession.shared.data(from: url)
+    } catch {
+      throw NetworkError.requestFailed(error)
+    }
 
-      guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-        throw NetworkError.invalidResponse
-      }
+    guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+      throw NetworkError.invalidResponse
+    }
 
+    do {
       let decoder = JSONDecoder()
       decoder.keyDecodingStrategy = .convertFromSnakeCase
       return try decoder.decode(T.self, from: data)
     } catch let decodingError as DecodingError {
+      // Print the raw JSON data for debugging
+      if let jsonString = String(data: data, encoding: .utf8) {
+        print("Failed to decode JSON. Raw response: \(jsonString)")
+      }
+      // Print the specific decoding error
+      print("Decoding error: \(decodingError)")
       throw NetworkError.decodingFailed(decodingError)
     } catch {
-      throw NetworkError.requestFailed(error)
+      throw NetworkError.unknown
     }
   }
 }
