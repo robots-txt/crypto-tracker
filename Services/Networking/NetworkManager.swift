@@ -9,18 +9,44 @@ enum NetworkError: Error {
 }
 
 protocol NetworkManaging {
-  func request<T: Decodable>(url: URL?) async throws -> T
+  func request<T: Decodable>(url: URL?, forceRefresh: Bool) async throws -> T
 }
 
 class NetworkManager: NetworkManaging {
-  func request<T: Decodable>(url: URL?) async throws -> T {
+  private let session: URLSession
+
+  init() {
+    let configuration = URLSessionConfiguration.default
+    configuration.requestCachePolicy = .returnCacheDataElseLoad
+    configuration.urlCache = URLCache(
+      memoryCapacity: 50 * 1024 * 1024, // 50 MB
+      diskCapacity: 100 * 1024 * 1024, // 100 MB
+      diskPath: "coin_cache"
+    )
+    self.session = URLSession(configuration: configuration)
+  }
+
+  func request<T: Decodable>(url: URL?, forceRefresh: Bool = false) async throws -> T {
     guard let url = url else {
       throw NetworkError.invalidURL
     }
 
+    let request = URLRequest(url: url)
+
+    if forceRefresh {
+      dPrint("Forcing API fetch (pull to refresh), clearing cache for this request.")
+      session.configuration.urlCache?.removeCachedResponse(for: request)
+    } else {
+      if let _ = session.configuration.urlCache?.cachedResponse(for: request) {
+        dPrint("Loading from cache")
+      } else {
+        dPrint("Fetching from API (initial load)")
+      }
+    }
+
     let (data, response): (Data, URLResponse)
     do {
-      (data, response) = try await URLSession.shared.data(from: url)
+      (data, response) = try await session.data(for: request)
     } catch {
       throw NetworkError.requestFailed(error)
     }
@@ -36,10 +62,10 @@ class NetworkManager: NetworkManaging {
     } catch let decodingError as DecodingError {
       // Print the raw JSON data for debugging
       if let jsonString = String(data: data, encoding: .utf8) {
-        print("Failed to decode JSON. Raw response: \(jsonString)")
+        dPrint("Failed to decode JSON. Raw response: \(jsonString)")
       }
       // Print the specific decoding error
-      print("Decoding error: \(decodingError)")
+      dPrint("Decoding error: \(decodingError)")
       throw NetworkError.decodingFailed(decodingError)
     } catch {
       throw NetworkError.unknown

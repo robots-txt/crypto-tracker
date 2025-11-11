@@ -40,7 +40,7 @@ struct ContentView: View {
             }
           }
           .refreshable {
-            await viewModel.fetchCoins()
+            await viewModel.fetchCoins(forceRefresh: true)
           }
         }
       }

@@ -12,11 +12,11 @@ class HomeViewModel: ObservableObject {
     self.networkManager = networkManager
   }
 
-  func fetchCoins() async {
+  func fetchCoins(forceRefresh: Bool = false) async {
     isLoading = true
     errorMessage = nil
     do {
-      coins = try await networkManager.request(url: CoinGeckoAPI.getCoinsMarketURL())
+      coins = try await networkManager.request(url: CoinGeckoAPI.getCoinsMarketURL(), forceRefresh: forceRefresh)
     } catch {
       errorMessage = Strings.errorMessage
     }
