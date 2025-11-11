@@ -7,7 +7,7 @@ enum CoinGeckoAPI {
     static let coinsMarket = "/coins/markets"
   }
 
-  static func getCoinsMarketURL(currency: String = "usd", order: String = "market_cap_desc", perPage: Int = 5, page: Int = 1, sparkline: Bool = false) -> URL? {
+  static func getCoinsMarketURL(currency: String = "usd", order: String = "market_cap_desc", perPage: Int = 20, page: Int = 1, sparkline: Bool = false) -> URL? {
     var components = URLComponents(string: baseURL + Endpoints.coinsMarket)
     components?.queryItems = [
       URLQueryItem(name: "vs_currency", value: currency),
