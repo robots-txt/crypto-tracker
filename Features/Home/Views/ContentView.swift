@@ -12,9 +12,9 @@ struct ContentView: View {
           VStack {
             Text(errorMessage)
               .foregroundColor(.themeRed)
-              .font(.headline())
+              .font(Font.headline())
             Button(Strings.retry) {
-              Task { await viewModel.fetchCoins() }
+              Task { await viewModel.fetchCoins(forceRefresh: true) }
             }
           }
         } else {

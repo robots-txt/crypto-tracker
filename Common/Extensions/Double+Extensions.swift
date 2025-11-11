@@ -2,6 +2,45 @@
 import Foundation
 
 extension Double {
+  /// Converts a Double into a percentage String with 2 decimal places.
+  /// ```
+  /// Convert 0.25 to "25.00%"
+  /// ```
+  func asPercentWith2Decimals() -> String {
+    let number = NSNumber(value: self)
+    return Self.percentFormatter2.string(from: number) ?? "0.00%"
+  }
+
+  private static let percentFormatter2: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .percent
+    formatter.minimumFractionDigits = 2
+    formatter.maximumFractionDigits = 2
+    formatter.multiplier = 1 // API already returns percentage, not fraction
+    return formatter
+  }()
+
+  /// Converts a Double into a currency String with 2 decimal places.
+  /// ```
+  /// Convert 1234.56 to "$1,234.56"
+  /// ```
+  func asCurrencyWith2Decimals() -> String {
+    let number = NSNumber(value: self)
+    return Self.currencyFormatter2.string(from: number) ?? "$0.00"
+  }
+
+  private static let currencyFormatter2: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.usesGroupingSeparator = true
+    formatter.numberStyle = .currency
+    formatter.locale = .current // default is .current, but good to be explicit
+    formatter.currencyCode = "usd" // change currency
+    formatter.currencySymbol = "$" // change currency symbol
+    formatter.minimumFractionDigits = 2
+    formatter.maximumFractionDigits = 2
+    return formatter
+  }()
+
   /// Formats a Double into a currency string with abbreviations for millions, billions, and trillions.
   /// ```
   /// Convert 1234567890 to $1.23B
