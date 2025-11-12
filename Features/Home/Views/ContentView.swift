@@ -1,8 +1,21 @@
 import SwiftUI
 
 struct ContentView: View {
-  @StateObject var viewModel = HomeViewModel()
+  @StateObject var viewModel: HomeViewModel
 
+  // This initializer is for previews and dependency injection
+  init(viewModel: HomeViewModel) {
+    _viewModel = StateObject(wrappedValue: viewModel)
+  }
+
+  // This initializer is for the main app target
+  @MainActor
+  init() {
+    self.init(viewModel: HomeViewModel())
+  }
+
+  @Environment(\.isPreview) var isPreview
+  
   var body: some View {
     NavigationView {
       Group {
@@ -31,11 +44,27 @@ struct ContentView: View {
       .background(Color.themeBackground.ignoresSafeArea())
     }
     .onAppear {
-      Task { await viewModel.fetchCoins() }
+      if !isPreview {
+        Task { await viewModel.fetchCoins() }
+      }
     }
   }
 }
 
-#Preview {
-  ContentView()
+#Preview("Success") {
+  let viewModel = HomeViewModel()
+  viewModel.coins = [Coin.mock, Coin.mock2]
+  return ContentView(viewModel: viewModel)
+}
+
+#Preview("Loading") {
+  let viewModel = HomeViewModel()
+  viewModel.isLoading = true
+  return ContentView(viewModel: viewModel)
+}
+
+#Preview("Error") {
+  let viewModel = HomeViewModel()
+  viewModel.errorMessage = "Something went wrong. Please try again."
+  return ContentView(viewModel: viewModel)
 }

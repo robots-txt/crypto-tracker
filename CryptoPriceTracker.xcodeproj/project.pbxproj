@@ -18,9 +18,20 @@
 		222144BB2B0F7B2A006F3B9A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222144B42B0F7B2A006F3B9A /* NetworkManager.swift */; };
 		222144BC2B0F7B2A006F3B9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 222144B52B0F7B2A006F3B9A /* Localizable.strings */; };
 		222144CD2B0F7B2A006F3B9A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222144CE2B0F7B2A006F3B9A /* HomeViewModel.swift */; };
+		30CB610F2EC40BC900BE06A8 /* MockCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CB610D2EC40BC900BE06A8 /* MockCoin.swift */; };
 		30D60C0A2EC3F3E700C59154 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D60C092EC3F3E500C59154 /* Double+Extensions.swift */; };
 		30D60C0C2EC3FBEC00C59154 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D60C0B2EC3FBEC00C59154 /* CoinRowView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		30D60C1A2EC401EA00C59154 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 222144A72B0F7B2A006F3B9A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 222144992B0F7B2A006F3B9A;
+			remoteInfo = CryptoPriceTracker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2221449B2B0F7B2A006F3B9A /* CryptoPriceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoPriceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,13 +46,26 @@
 		222144B42B0F7B2A006F3B9A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		222144B52B0F7B2A006F3B9A /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		222144CE2B0F7B2A006F3B9A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		30CB610D2EC40BC900BE06A8 /* MockCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoin.swift; sourceTree = "<group>"; };
 		30D60C092EC3F3E500C59154 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		30D60C0B2EC3FBEC00C59154 /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
+		30D60C162EC401EA00C59154 /* CryptoPriceTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoPriceTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		30B4FF402EC3DA9600953350 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
+		30D60C172EC401EA00C59154 /* CryptoPriceTrackerTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CryptoPriceTrackerTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30D60C132EC401EA00C59154 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		222144952B0F7B2A006F3B9A = {
@@ -52,6 +76,8 @@
 				222144C42B0F7B2A006F3B9A /* Common */,
 				222144C52B0F7B2A006F3B9A /* Services */,
 				222144C62B0F7B2A006F3B9A /* Resources */,
+				30D60C172EC401EA00C59154 /* CryptoPriceTrackerTests */,
+				30CB610E2EC40BC900BE06A8 /* Mocks */,
 				2221449A2B0F7B2A006F3B9A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				2221449B2B0F7B2A006F3B9A /* CryptoPriceTracker.app */,
+				30D60C162EC401EA00C59154 /* CryptoPriceTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +188,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		30CB610E2EC40BC900BE06A8 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				30CB610D2EC40BC900BE06A8 /* MockCoin.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		30D60C082EC3F3D900C59154 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,17 +226,44 @@
 			productReference = 2221449B2B0F7B2A006F3B9A /* CryptoPriceTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		30D60C152EC401EA00C59154 /* CryptoPriceTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30D60C1C2EC401EA00C59154 /* Build configuration list for PBXNativeTarget "CryptoPriceTrackerTests" */;
+			buildPhases = (
+				30D60C122EC401EA00C59154 /* Sources */,
+				30D60C132EC401EA00C59154 /* Frameworks */,
+				30D60C142EC401EA00C59154 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30D60C1B2EC401EA00C59154 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				30D60C172EC401EA00C59154 /* CryptoPriceTrackerTests */,
+			);
+			name = CryptoPriceTrackerTests;
+			packageProductDependencies = (
+			);
+			productName = CryptoPriceTrackerTests;
+			productReference = 30D60C162EC401EA00C59154 /* CryptoPriceTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		222144A72B0F7B2A006F3B9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					222144992B0F7B2A006F3B9A = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					30D60C152EC401EA00C59154 = {
+						CreatedOnToolsVersion = 26.1;
+						TestTargetID = 222144992B0F7B2A006F3B9A;
 					};
 				};
 			};
@@ -219,6 +281,7 @@
 			projectRoot = "";
 			targets = (
 				222144992B0F7B2A006F3B9A /* CryptoPriceTracker */,
+				30D60C152EC401EA00C59154 /* CryptoPriceTrackerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,6 +293,13 @@
 			files = (
 				222144A32B0F7B2F006F3B9A /* Assets.xcassets in Resources */,
 				222144BC2B0F7B2A006F3B9A /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30D60C142EC401EA00C59154 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +317,7 @@
 				222144B72B0F7B2A006F3B9A /* Fonts.swift in Sources */,
 				222144B82B0F7B2A006F3B9A /* Colors.swift in Sources */,
 				222144B92B0F7B2A006F3B9A /* Coin.swift in Sources */,
+				30CB610F2EC40BC900BE06A8 /* MockCoin.swift in Sources */,
 				222144BA2B0F7B2A006F3B9A /* CoinGeckoAPI.swift in Sources */,
 				222144BB2B0F7B2A006F3B9A /* NetworkManager.swift in Sources */,
 				30D60C0A2EC3F3E700C59154 /* Double+Extensions.swift in Sources */,
@@ -254,7 +325,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30D60C122EC401EA00C59154 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		30D60C1B2EC401EA00C59154 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 222144992B0F7B2A006F3B9A /* CryptoPriceTracker */;
+			targetProxy = 30D60C1A2EC401EA00C59154 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		222144AB2B0F7B2A006F3B9A /* Debug */ = {
@@ -290,6 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Crypto Tracker";
@@ -309,6 +396,81 @@
 			};
 			name = Debug;
 		};
+		30D60C1D2EC401EA00C59154 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CryptoPriceTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoPriceTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoPriceTracker";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -324,6 +486,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				222144AE2B0F7B2A006F3B9A /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		30D60C1C2EC401EA00C59154 /* Build configuration list for PBXNativeTarget "CryptoPriceTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30D60C1D2EC401EA00C59154 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
