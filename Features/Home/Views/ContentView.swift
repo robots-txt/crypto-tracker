@@ -42,10 +42,10 @@ struct ContentView: View {
       }
       .navigationTitle(Strings.cryptoTracker)
       .background(Color.themeBackground.ignoresSafeArea())
-    }
-    .onAppear {
-      if !isPreview {
-        Task { await viewModel.fetchCoins() }
+      .onAppear {
+        if !isPreview {
+          Task { await viewModel.fetchCoins() }
+        }
       }
     }
   }
@@ -55,16 +55,19 @@ struct ContentView: View {
   let viewModel = HomeViewModel()
   viewModel.coins = [Coin.mock, Coin.mock2]
   return ContentView(viewModel: viewModel)
+    .environment(\.isPreview, true)
 }
 
 #Preview("Loading") {
   let viewModel = HomeViewModel()
   viewModel.isLoading = true
   return ContentView(viewModel: viewModel)
+    .environment(\.isPreview, true)
 }
 
 #Preview("Error") {
   let viewModel = HomeViewModel()
   viewModel.errorMessage = "Something went wrong. Please try again."
   return ContentView(viewModel: viewModel)
+    .environment(\.isPreview, true)
 }
