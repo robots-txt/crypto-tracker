@@ -8,7 +8,7 @@ struct CoinRowView: View {
     VStack(spacing: 0) {
       HStack(spacing: .paddingMedium) {
         // Coin Image
-        AsyncImage(url: URL(string: coin.image)) { image in
+        CachedAsyncImage(url: URL(string: coin.image)) { image in
           image.resizable()
         } placeholder: {
           Circle().fill(Color.clear)

@@ -8,7 +8,7 @@ struct CoinDetailView: View {
       VStack(alignment: .leading, spacing: .paddingMedium) {
         // Header
         HStack {
-          AsyncImage(url: URL(string: coin.image)) { image in
+          CachedAsyncImage(url: URL(string: coin.image)) { image in
             image.resizable()
           } placeholder: {
             Circle().fill(Color.clear)
