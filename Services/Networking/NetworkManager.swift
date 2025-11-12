@@ -1,11 +1,31 @@
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: Error, Equatable {
   case invalidURL
   case requestFailed(Error)
   case invalidResponse
   case decodingFailed(Error)
   case unknown
+
+  // Custom Equatable conformance
+  static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
+    switch (lhs, rhs) {
+    case (.invalidURL, .invalidURL):
+      return true
+    case (.requestFailed(let lhsError), .requestFailed(let rhsError)):
+      // Compare errors by their localized description or type for simplicity in tests
+      return lhsError.localizedDescription == rhsError.localizedDescription
+    case (.invalidResponse, .invalidResponse):
+      return true
+    case (.decodingFailed(let lhsError as DecodingError), .decodingFailed(let rhsError as DecodingError)):
+      // Compare DecodingErrors by their debugDescription for simplicity
+      return lhsError.localizedDescription == rhsError.localizedDescription
+    case (.unknown, .unknown):
+      return true
+    default:
+      return false
+    }
+  }
 }
 
 protocol NetworkManaging {
@@ -14,16 +34,25 @@ protocol NetworkManaging {
 
 class NetworkManager: NetworkManaging {
   private let session: URLSession
+  private let cache: URLCache
 
-  init() {
+  // Designated initializer for dependency injection
+  init(session: URLSession, cache: URLCache) {
+    self.session = session
+    self.cache = cache
+  }
+
+  // Convenience initializer for production code
+  convenience init() {
     let configuration = URLSessionConfiguration.default
-    configuration.requestCachePolicy = .returnCacheDataElseLoad
-    configuration.urlCache = URLCache(
+    let cache = URLCache(
       memoryCapacity: 50 * 1024 * 1024, // 50 MB
       diskCapacity: 100 * 1024 * 1024, // 100 MB
       diskPath: "coin_cache"
     )
-    self.session = URLSession(configuration: configuration)
+    configuration.urlCache = cache
+    configuration.requestCachePolicy = .returnCacheDataElseLoad
+    self.init(session: URLSession(configuration: configuration), cache: cache)
   }
 
   func request<T: Decodable>(url: URL?, forceRefresh: Bool = false) async throws -> T {
