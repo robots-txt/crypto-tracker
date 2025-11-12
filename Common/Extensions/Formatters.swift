@@ -71,3 +71,26 @@ extension Double {
     }
   }
 }
+
+extension String {
+  /// Converts an ISO8601 date string to a formatted date string (d-MMM-yyyy hh:mm a).
+  /// Returns the original string if parsing fails.
+  var asFormattedDateString: String {
+    if let date = Self.iso8601Formatter.date(from: self) {
+      return Self.displayDateFormatter.string(from: date)
+    }
+    return self // Return original string if parsing fails
+  }
+
+  private static let iso8601Formatter: ISO8601DateFormatter = {
+    let formatter = ISO8601DateFormatter()
+    formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    return formatter
+  }()
+
+  private static let displayDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d-MMM-yyyy hh:mm a"
+    return formatter
+  }()
+}

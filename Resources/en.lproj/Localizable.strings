@@ -12,3 +12,13 @@
 "error_title" = "Error";
 "error_message" = "Something went wrong. Please try again.";
 "retry" = "Retry";
+"key_statistics" = "Key Statistics";
+"current_price" = "Current Price";
+"market_capitalization" = "Market Capitalization";
+"high_24h" = "24h High";
+"low_24h" = "24h Low";
+"additional_details" = "Additional Details";
+"all_time_high" = "All-Time High";
+"ath_date" = "ATH Date";
+"total_volume" = "Total Volume";
+"last_updated" = "Last Updated";

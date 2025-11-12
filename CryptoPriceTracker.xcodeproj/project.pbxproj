@@ -19,8 +19,11 @@
 		222144BC2B0F7B2A006F3B9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 222144B52B0F7B2A006F3B9A /* Localizable.strings */; };
 		222144CD2B0F7B2A006F3B9A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222144CE2B0F7B2A006F3B9A /* HomeViewModel.swift */; };
 		30CB610F2EC40BC900BE06A8 /* MockCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CB610D2EC40BC900BE06A8 /* MockCoin.swift */; };
-		30D60C0A2EC3F3E700C59154 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D60C092EC3F3E500C59154 /* Double+Extensions.swift */; };
 		30D60C0C2EC3FBEC00C59154 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D60C0B2EC3FBEC00C59154 /* CoinRowView.swift */; };
+		30E309F82EC41A2700CF1A19 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E309F62EC41A2700CF1A19 /* Router.swift */; };
+		30E309F92EC41A2700CF1A19 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E309F52EC41A2700CF1A19 /* Route.swift */; };
+		30E309FB2EC41A4500CF1A19 /* CoinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E309FA2EC41A4500CF1A19 /* CoinDetailView.swift */; };
+		30E309FD2EC41C6B00CF1A19 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E309FC2EC41C6B00CF1A19 /* Formatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,9 +50,12 @@
 		222144B52B0F7B2A006F3B9A /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		222144CE2B0F7B2A006F3B9A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		30CB610D2EC40BC900BE06A8 /* MockCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoin.swift; sourceTree = "<group>"; };
-		30D60C092EC3F3E500C59154 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		30D60C0B2EC3FBEC00C59154 /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		30D60C162EC401EA00C59154 /* CryptoPriceTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoPriceTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E309F52EC41A2700CF1A19 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		30E309F62EC41A2700CF1A19 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		30E309FA2EC41A4500CF1A19 /* CoinDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailView.swift; sourceTree = "<group>"; };
+		30E309FC2EC41C6B00CF1A19 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -113,6 +119,7 @@
 				30D60C082EC3F3D900C59154 /* Extensions */,
 				30B4FF402EC3DA9600953350 /* Utils */,
 				222144CA2B0F7B2A006F3B9A /* Constants */,
+				30E309F72EC41A2700CF1A19 /* Navigation */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -148,6 +155,7 @@
 			children = (
 				2221449F2B0F7B2A006F3B9A /* ContentView.swift */,
 				30D60C0B2EC3FBEC00C59154 /* CoinRowView.swift */,
+				30E309FA2EC41A4500CF1A19 /* CoinDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,9 +207,18 @@
 		30D60C082EC3F3D900C59154 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				30D60C092EC3F3E500C59154 /* Double+Extensions.swift */,
+				30E309FC2EC41C6B00CF1A19 /* Formatters.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		30E309F72EC41A2700CF1A19 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				30E309F52EC41A2700CF1A19 /* Route.swift */,
+				30E309F62EC41A2700CF1A19 /* Router.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,16 +328,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D60C0C2EC3FBEC00C59154 /* CoinRowView.swift in Sources */,
+				30E309F82EC41A2700CF1A19 /* Router.swift in Sources */,
+				30E309FB2EC41A4500CF1A19 /* CoinDetailView.swift in Sources */,
+				30E309F92EC41A2700CF1A19 /* Route.swift in Sources */,
 				222144A02B0F7B2A006F3B9A /* ContentView.swift in Sources */,
 				2221449E2B0F7B2A006F3B9A /* CryptoPriceTrackerApp.swift in Sources */,
 				222144B62B0F7B2A006F3B9A /* Strings.swift in Sources */,
 				222144B72B0F7B2A006F3B9A /* Fonts.swift in Sources */,
 				222144B82B0F7B2A006F3B9A /* Colors.swift in Sources */,
 				222144B92B0F7B2A006F3B9A /* Coin.swift in Sources */,
+				30E309FD2EC41C6B00CF1A19 /* Formatters.swift in Sources */,
 				30CB610F2EC40BC900BE06A8 /* MockCoin.swift in Sources */,
 				222144BA2B0F7B2A006F3B9A /* CoinGeckoAPI.swift in Sources */,
 				222144BB2B0F7B2A006F3B9A /* NetworkManager.swift in Sources */,
-				30D60C0A2EC3F3E700C59154 /* Double+Extensions.swift in Sources */,
 				222144CD2B0F7B2A006F3B9A /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,7 +401,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Crypto Tracker";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.CryptoPriceTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";

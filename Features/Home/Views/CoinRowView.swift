@@ -62,6 +62,5 @@ struct CoinRowView: View {
       }
     }
     .listRowInsets(EdgeInsets(top: 0, leading: .paddingMedium, bottom: 0, trailing: .paddingMedium))
-    .listRowSeparator(.hidden)
   }
 }

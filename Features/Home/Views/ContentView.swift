@@ -16,8 +16,10 @@ struct ContentView: View {
 
   @Environment(\.isPreview) var isPreview
   
+  @EnvironmentObject var router: Router
+
   var body: some View {
-    NavigationView {
+    NavigationStack(path: $router.path) {
       Group {
         if viewModel.isLoading {
           ProgressView()
@@ -25,14 +27,17 @@ struct ContentView: View {
           VStack {
             Text(errorMessage)
               .foregroundColor(.themeRed)
-              .font(Font.headline())
+              .font(.headline)
             Button(Strings.retry) {
               Task { await viewModel.fetchCoins(forceRefresh: true) }
             }
           }
         } else {
           List(viewModel.coins) { coin in
-            CoinRowView(coin: coin, isLast: coin.id == viewModel.coins.last?.id)
+            NavigationLink(value: Route.detail(coin: coin)) {
+              CoinRowView(coin: coin, isLast: coin.id == viewModel.coins.last?.id)
+            }
+            .listRowSeparator(.hidden)
           }
           .listStyle(.plain)
           .refreshable {
@@ -42,6 +47,12 @@ struct ContentView: View {
       }
       .navigationTitle(Strings.cryptoTracker)
       .background(Color.themeBackground.ignoresSafeArea())
+      .navigationDestination(for: Route.self) { route in
+        switch route {
+        case .detail(let coin):
+          CoinDetailView(coin: coin)
+        }
+      }
       .onAppear {
         if !isPreview {
           Task { await viewModel.fetchCoins() }
